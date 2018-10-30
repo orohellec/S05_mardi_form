@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+ #container_contacts
+ {
+   display: flex;
+   flex-wrap: wrap;
+ }
+
+ .card
+ {
+   margin-top: 10px;
+   margin-right: 10px;
+ }
