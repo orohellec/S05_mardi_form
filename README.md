@@ -2,6 +2,8 @@
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
+bonjours et bienvenue sur  notre app github de olivier:https://github.com/orohellec
+github de karl:https://github.com/karlverdiere
 
 Things you may want to cover:
 
