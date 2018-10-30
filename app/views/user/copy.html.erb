@@ -1,0 +1,45 @@
+<h3>Un formulaire classique</h3>
+
+<form method="post" action="/">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Votre pseudo: <input type="text" name="username" /></p>
+  <p>Votre email: <input type="text" name="email" /></p>
+  <p>Un petit mot sur vous? <input type="text" name="bio" /></p>
+  <br>
+  <input type="submit" value="Envoyer" />
+</form>
+
+<h3>this is form tag, meilleur prise en main/controle que le classic form</h3>
+
+<%= form_tag do %>
+  <%= label_tag(:username, "Username:") %>  <!-- "Username" représente le nom devant la case -->
+  <%= text_field_tag(:username) %> <br/> <!-- :username représente l'attribut qui sera rempli-->
+  <%= label_tag(:email, "Email:") %>
+  <%= text_field_tag(:email) %><br/>
+  <%= label_tag(:bio, "Bio:") %>
+  <%= text_field_tag(:bio) %><br/>
+  <%= submit_tag("Envoyer") %><br/><br/><br/>
+<% end %>
+
+<h3>le form for s'adresse directement aux model (ici : user, définir par @user dans méthode new)</h3>
+
+<%= form_for @user, url: {action: "create"}, html: {class: "nifty_for"} do |f| %>
+  Username :<%= f.text_field :username %><br/>
+  Email :<%= f.text_field :email %><br/><br/><br/>
+  Question : quelle est votre idée de projet final ? <br />  <%= f.text_area :bio, size: "42x4.2" %><br/>
+  <%= f.submit "Envoyer" %><br/>
+<% end %>
+
+
+<div id="container_contacts">
+  <% @all_users.each do |user| %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= user[:username] %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= user[:email] %></h6>
+      <p class="card-text"><%= user[:bio] %></p>
+      <a href="#" class="card-link">Card link</a>
+    </div>
+  </div>
+  <% end %>
+</div>

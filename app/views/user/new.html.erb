@@ -1,35 +1,45 @@
-<p> Hey you! Viens remplir mon formulaire! Viens on est bien bien bien bien bien</p>
+<h2>Création des utilisateurs</h2>
+<h3>Méthode 1 (la classique)</h3>
+<form action="/" method="POST">
+ <div class="row">
+    <div class="col">
+      <input type="string" class="form-control" placeholder="username" name="username">
+    </div>
+    <div class="col">
+      <input type="string" class="form-control" placeholder="email" name="email">
+    </div>
+  </div>
 
-<form method="post" action="/">
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2"></label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="bio" name="bio">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Envoyer</button>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <p>Votre pseudo: <input type="text" name="username" /></p>
-  <p>Votre email: <input type="text" name="email" /></p>
-  <p>Un petit mot sur vous? <input type="text" name="bio" /></p>
-  <br>
-  <input type="submit" value="Envoyer" />
 </form>
 
-<h3>this is form tag, meilleur prise en main/controle que le classic form</h3>
+
+<h3>Méthode 2 (form_tag, une valeur sur ;)</h3>
+
 
 <%= form_tag do %>
-  <%= label_tag(:username, "Username:") %>  <!-- "Username" représente le nom devant la case -->
-  <%= text_field_tag(:username) %> <br/> <!-- :username représente l'attribut qui sera rempli-->
-  <%= label_tag(:email, "Email:") %>
-  <%= text_field_tag(:email) %><br/>
-  <%= label_tag(:bio, "Bio:") %>
-  <%= text_field_tag(:bio) %><br/>
-  <%= submit_tag("Envoyer") %><br/><br/><br/>
+  <%= text_field_tag(:username, nil, class: 'form-control', placeholder: 'username' ) %><br/>
+  <%= text_field_tag(:email, nil, class: 'form-control', placeholder: 'email' ) %><br/>
+  <%= text_field_tag(:bio, nil, class: 'form-control', placeholder: 'bio' ) %><br/>
+  <%= submit_tag("Envoyer", class: "btn btn-primary mb-2") %><br/>
 <% end %>
 
-<h3>le form for s'adresse directement aux model (ici : user, définir par @user dans méthode new)</h3>
 
-<%= form_for @user, url: {action: "create"}, html: {class: "nifty_for"} do |f| %>
-  Username :<%= f.text_field :username %><br/>
-  Email :<%= f.text_field :email %><br/><br/><br/>
-  Question : quelle est votre idée de projet final ? <br />  <%= f.text_area :bio, size: "42x4.2" %><br/>
-  <%= f.submit "Envoyer" %><br/>
+<h3>Méthode 3 (form_for, la MéGa :D)</h3>
+<h4>décommenter certaines lignes de la méthode create du fichier user_controller.rb pour utiliser le formulaire 3</h4>
+
+<%= form_for @user, url: {action: "create"} do |f| %>
+  <%= f.text_field :username, class: 'form-control', placeholder: 'username' %><br/>
+  <%= f.text_field :email, class: 'form-control', placeholder: 'email' %><br/>
+  <%= f.text_area :bio, class: 'form-control', placeholder: 'bio', size: "42x4.2" %><br/>
+  <%= f.submit "Envoyer", class: "btn btn-primary mb-2"%><br/>
 <% end %>
-
 
 <div id="container_contacts">
   <% @all_users.each do |user| %>
